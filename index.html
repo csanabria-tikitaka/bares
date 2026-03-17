@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tiki Taka instala y gestiona máquinas tipo B en bares y restaurantes. Tú cedes el espacio, te despreocupas de todo y cobras tus comisiones." />
+  <meta name="description" content="Tiki Taka instala y gestiona máquinas tipo B en bares y restaurantes. Usted cede el espacio, nosotros nos ocupamos de todo y su local cobra las comisiones." />
   <title>Tiki Taka | Instalación de máquinas tipo B para bares y restaurantes</title>
   <style>
     :root {
       --bg: #050505;
-      --bg-soft: #101010;
       --card: rgba(255,255,255,0.06);
       --card-border: rgba(255,255,255,0.09);
       --text: #ffffff;
@@ -18,18 +17,12 @@
       --success: #24d366;
       --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
       --radius: 24px;
-      --radius-sm: 16px;
       --container: 1180px;
       --transition: 300ms ease;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -43,15 +36,8 @@
       overflow-x: hidden;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -75,13 +61,6 @@
       min-height: 76px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
     .brand-logo {
       width: 132px;
       height: auto;
@@ -95,26 +74,28 @@
       font-size: 0.96rem;
     }
 
-    .nav-links a {
-      transition: color var(--transition);
-    }
-
+    .nav-links a { transition: color var(--transition); }
     .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-    }
+    .nav-links a:focus-visible { color: var(--text); }
 
-    .nav-cta {
+    .nav-cta,
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 18px;
+      min-height: 52px;
+      padding: 0 22px;
       border-radius: 999px;
+      font-weight: 700;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      min-height: auto;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #fff;
-      font-weight: 700;
       box-shadow: 0 10px 25px rgba(228, 0, 43, 0.35);
-      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
       white-space: nowrap;
     }
 
@@ -134,7 +115,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 28px;
       align-items: center;
     }
@@ -166,7 +147,7 @@
       font-size: clamp(2.2rem, 6vw, 4.7rem);
       line-height: 0.95;
       letter-spacing: -0.05em;
-      max-width: 11ch;
+      max-width: 12ch;
     }
 
     .hero p {
@@ -174,7 +155,7 @@
       font-size: 1.06rem;
       line-height: 1.7;
       color: var(--muted);
-      max-width: 62ch;
+      max-width: 66ch;
     }
 
     .hero-actions {
@@ -184,28 +165,16 @@
       margin-top: 28px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
-    }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #fff;
       box-shadow: 0 12px 28px rgba(228, 0, 43, 0.28);
+      border: 1px solid transparent;
     }
 
     .btn-secondary {
       background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
       color: #fff;
     }
 
@@ -246,7 +215,6 @@
     .hero-card::after {
       content: "";
       position: absolute;
-      inset: auto;
       border-radius: 50%;
       filter: blur(20px);
       z-index: -1;
@@ -284,7 +252,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #24d366;
+      background: var(--success);
       box-shadow: 0 0 0 7px rgba(36, 211, 102, 0.12);
     }
 
@@ -300,7 +268,6 @@
     }
 
     .device-screen {
-      position: relative;
       overflow: hidden;
       border-radius: 24px;
       padding: 18px;
@@ -351,7 +318,7 @@
 
     .stat-box strong {
       display: block;
-      font-size: 1.1rem;
+      font-size: 1.02rem;
       margin-bottom: 6px;
     }
 
@@ -364,7 +331,7 @@
       position: absolute;
       right: -6px;
       bottom: 34px;
-      width: 230px;
+      width: 250px;
       padding: 16px;
       border-radius: 22px;
       background: rgba(255,255,255,0.08);
@@ -376,7 +343,7 @@
 
     .floating-card strong {
       display: block;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 6px;
     }
 
@@ -387,12 +354,10 @@
       line-height: 1.5;
     }
 
-    .section {
-      padding: 34px 0;
-    }
+    .section { padding: 34px 0; }
 
     .section-head {
-      max-width: 760px;
+      max-width: 860px;
       margin-bottom: 26px;
     }
 
@@ -411,7 +376,8 @@
 
     .benefits-grid,
     .steps-grid,
-    .contact-grid {
+    .contact-grid,
+    .summary-grid {
       display: grid;
       gap: 18px;
     }
@@ -419,6 +385,11 @@
     .benefits-grid,
     .steps-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .summary-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
     }
 
     .contact-grid {
@@ -525,9 +496,7 @@
       transition: transform var(--transition), border-color var(--transition);
     }
 
-    .contact-chip:hover {
-      border-color: rgba(255,255,255,0.16);
-    }
+    .contact-chip:hover { border-color: rgba(255,255,255,0.16); }
 
     .contact-chip .icon {
       width: 42px;
@@ -581,9 +550,7 @@
     }
 
     .field input::placeholder,
-    .field textarea::placeholder {
-      color: #8e8e8e;
-    }
+    .field textarea::placeholder { color: #8e8e8e; }
 
     .field input:focus,
     .field textarea:focus,
@@ -678,13 +645,12 @@
       .hero-grid,
       .contact-grid,
       .benefits-grid,
-      .steps-grid {
+      .steps-grid,
+      .summary-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-card {
-        min-height: auto;
-      }
+      .hero-card { min-height: auto; }
 
       .floating-card {
         position: static;
@@ -711,21 +677,10 @@
         box-shadow: var(--shadow);
       }
 
-      .nav-links.open {
-        display: flex;
-      }
-
-      .mobile-toggle {
-        display: inline-flex;
-      }
-
-      .nav-cta.desktop-only {
-        display: none;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+      .nav-links.open { display: flex; }
+      .mobile-toggle { display: inline-flex; }
+      .nav-cta.desktop-only { display: none; }
+      .form-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 640px) {
@@ -736,21 +691,11 @@
         width: min(calc(100% - 24px), var(--container));
       }
 
-      .nav {
-        min-height: 70px;
-      }
+      .nav { min-height: 70px; }
+      .brand-logo { width: 108px; }
+      .hero { padding-top: 34px; }
 
-      .brand-logo {
-        width: 108px;
-      }
-
-      .hero {
-        padding-top: 34px;
-      }
-
-      h1 {
-        max-width: 12ch;
-      }
+      h1 { max-width: 12ch; }
 
       .hero p,
       .section-head p,
@@ -766,17 +711,9 @@
         border-radius: 22px;
       }
 
-      .device {
-        max-width: 100%;
-      }
-
-      .slots {
-        gap: 10px;
-      }
-
-      .slot {
-        border-radius: 14px;
-      }
+      .device { max-width: 100%; }
+      .slots { gap: 10px; }
+      .slot { border-radius: 14px; }
 
       .footer-inner {
         flex-direction: column;
@@ -785,15 +722,11 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
+      html { scroll-behavior: auto; }
       *, *::before, *::after {
         animation: none !important;
         transition: none !important;
       }
-
       .reveal {
         opacity: 1;
         transform: none;
@@ -804,19 +737,19 @@
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a class="brand" href="#inicio" aria-label="Ir al inicio de Tiki Taka">
+      <a href="#inicio" aria-label="Ir al inicio de Tiki Taka">
         <img class="brand-logo" src="Logo blanco 2 líneas.png" alt="Logo Tiki Taka" />
       </a>
 
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#servicio">Servicio</a>
-        <a href="#beneficios">Ventajas</a>
         <a href="#proceso">Proceso</a>
+        <a href="#beneficios">Ventajas</a>
         <a href="#contacto">Contacto</a>
-        <a class="nav-cta" href="#contacto">Quiero mi propuesta</a>
+        <a class="nav-cta" href="#contacto">Solicitar asesoramiento</a>
       </nav>
 
-      <a class="nav-cta desktop-only" href="#contacto">Quiero mi propuesta</a>
+      <a class="nav-cta desktop-only" href="#contacto">Solicitar asesoramiento</a>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
     </div>
   </header>
@@ -825,29 +758,29 @@
     <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div class="reveal">
-          <div class="eyebrow">Instalación de máquinas tipo B para hostelería</div>
-          <h1>Instala una máquina tipo B en tu local y cobra comisiones sin complicarte.</h1>
+          <div class="eyebrow">Una solución rentable y fácil de implantar</div>
+          <h1>Instale una máquina tipo B en su bar y cobre comisiones sin complicaciones.</h1>
           <p>
-            En <strong>Tiki Taka</strong> instalamos y gestionamos <strong>máquinas tipo B</strong> para bares y restaurantes.
-            Tú pones el espacio. Nosotros nos encargamos de la instalación, la gestión y el seguimiento del servicio.
-            <strong>Tu única preocupación es cobrar las comisiones.</strong>
+            Sabemos que la prioridad de un bar es centrarse en sus clientes y en el funcionamiento del negocio. Por eso ofrecemos un modelo de servicio completo,
+            ágil y sin complicaciones: analizamos su establecimiento, valoramos la mejor ubicación para el terminal y realizamos la instalación con todas las garantías.
+            Desde ese momento, su bar empieza a generar ingresos adicionales a través de un servicio que aporta valor al local y que no exige dedicación extra por su parte.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Solicitar información</a>
-            <a class="btn btn-secondary" href="#beneficios">Ver ventajas</a>
+            <a class="btn btn-primary" href="#contacto">Quiero información</a>
+            <a class="btn btn-secondary" href="#proceso">Cómo funciona</a>
           </div>
 
           <div class="hero-meta" aria-label="Ventajas destacadas">
-            <span class="meta-pill">Sin gestión diaria</span>
-            <span class="meta-pill">Instalación y soporte</span>
-            <span class="meta-pill">Ingresos por comisión</span>
+            <span class="meta-pill">Ingresos adicionales</span>
+            <span class="meta-pill">Gestión integral</span>
+            <span class="meta-pill">Sin dedicación extra</span>
           </div>
         </div>
 
         <aside class="hero-card reveal" aria-label="Vista destacada del servicio">
           <div>
-            <div class="machine-badge"><span></span> Servicio disponible para nuevos locales</div>
+            <div class="machine-badge"><span></span> Servicio disponible para bares y restaurantes</div>
             <div class="device">
               <div class="device-screen">
                 <img class="screen-logo" src="Logo blanco 2 líneas.png" alt="Tiki Taka" />
@@ -858,12 +791,12 @@
                 </div>
                 <div class="screen-stats">
                   <div class="stat-box">
-                    <strong>Más rentabilidad</strong>
-                    <span>Monetiza un espacio de tu bar o restaurante</span>
+                    <strong>Implantación sencilla</strong>
+                    <span>Analizamos el local y definimos la mejor ubicación</span>
                   </div>
                   <div class="stat-box">
-                    <strong>Todo incluido</strong>
-                    <span>Instalación, gestión y soporte por nuestra parte</span>
+                    <strong>Modelo sin carga</strong>
+                    <span>Nos ocupamos de la gestión para que usted cobre sus comisiones</span>
                   </div>
                 </div>
               </div>
@@ -871,45 +804,102 @@
           </div>
 
           <div class="floating-card">
-            <strong>Tú cobras, nosotros gestionamos</strong>
-            <p>Una solución pensada para sumar ingresos al local sin añadirte carga operativa.</p>
+            <strong>Usted mantiene el foco en su negocio</strong>
+            <p>Nosotros gestionamos todo lo necesario para que el terminal funcione correctamente y aporte rentabilidad desde el primer momento.</p>
           </div>
         </aside>
       </div>
     </section>
 
     <section class="section" id="servicio">
+      <div class="container summary-grid">
+        <article class="card reveal">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <h2>Un servicio completo, ágil y sin complicaciones</h2>
+          </div>
+          <p>
+            Si está valorando incorporar una máquina tipo B en su establecimiento, le ofrecemos una solución clara y profesional.
+            Estudiamos su bar de forma individual, valoramos la implantación más adecuada y realizamos la instalación con todas las garantías.
+          </p>
+          <p style="margin-top: 14px;">
+            A partir de ahí, su local dispone de una nueva vía de ingresos complementarios sin asumir una operativa compleja ni dedicar tiempo a tareas técnicas o administrativas.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon">✓</div>
+          <h3>Lo que usted obtiene</h3>
+          <ul class="list-clean">
+            <li>Una fuente adicional de rentabilidad para su establecimiento</li>
+            <li>Instalación profesional adaptada a su local</li>
+            <li>Gestión integral por parte de nuestro equipo</li>
+            <li>Soporte técnico y operativo cuando sea necesario</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Un servicio llave en mano para bares y restaurantes</h2>
+          <h2>Cómo funciona el proceso</h2>
           <p>
-            Si estás valorando instalar una máquina tipo B en tu establecimiento, Tiki Taka te ofrece una solución cómoda,
-            profesional y preparada para que no tengas que ocuparte de la operativa del día a día.
+            Le ofrecemos un proceso claro, profesional y sin complicaciones: contacto, evaluación, instalación y gestión integral. Así de simple.
           </p>
         </div>
 
-        <div class="benefits-grid">
+        <div class="steps-grid">
           <article class="card reveal">
-            <div class="card-icon">🛠️</div>
-            <h3>Instalación completa</h3>
+            <div class="step-number">1</div>
+            <h3>Primer contacto y asesoramiento</h3>
             <p>
-              Nos encargamos de poner en marcha la máquina en tu local para que todo quede resuelto de forma ágil y profesional.
+              El propietario del bar contacta con nosotros para conocer el servicio y resolver cualquier duda. Explicamos de forma clara cómo funciona el modelo,
+              qué requisitos hay que tener en cuenta y qué puede esperar en términos de operativa y rentabilidad.
             </p>
           </article>
 
           <article class="card reveal">
-            <div class="card-icon">🧾</div>
-            <h3>Gestión sin fricción</h3>
+            <div class="step-number">2</div>
+            <h3>Evaluación del local</h3>
             <p>
-              El servicio está pensado para que tú no tengas que preocuparte por la gestión: nosotros asumimos la parte operativa.
+              Estudiamos las características del bar para confirmar que el terminal encaja con el perfil del establecimiento. También analizamos la ubicación más adecuada
+              dentro del local para favorecer su visibilidad, uso y rendimiento.
             </p>
           </article>
 
           <article class="card reveal">
-            <div class="card-icon">💸</div>
-            <h3>Comisiones para tu negocio</h3>
+            <div class="step-number">3</div>
+            <h3>Instalación del terminal</h3>
             <p>
-              Tú cedes el espacio y cobras las comisiones generadas, incorporando una fuente de ingresos adicional para tu local.
+              Una vez validada la propuesta, realizamos la instalación de forma rápida y profesional. Nos ocupamos de que todo quede listo para su funcionamiento,
+              minimizando cualquier interferencia en la actividad habitual del bar.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="step-number">4</div>
+            <h3>Gestión integral por nuestra parte</h3>
+            <p>
+              A partir de la instalación, nuestra empresa asume la gestión completa del servicio. Esto incluye la operación del terminal, el mantenimiento,
+              el soporte técnico, las revisiones necesarias y el cumplimiento de la normativa aplicable.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="step-number">5</div>
+            <h3>Usted cobra sus comisiones</h3>
+            <p>
+              El propietario del bar no tiene que gestionar incidencias ni dedicar tiempo a tareas técnicas o administrativas. Su papel es simple:
+              beneficiarse de las comisiones generadas por el terminal instalado en su establecimiento.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">→</div>
+            <h3>Un modelo pensado para ganar más con menos esfuerzo</h3>
+            <p>
+              Nuestro objetivo es que su bar obtenga una fuente estable de ingresos complementarios sin asumir cargas añadidas. Usted mantiene el foco en su negocio;
+              nosotros gestionamos todo lo necesario para que el terminal funcione correctamente y aporte rentabilidad desde el primer momento.
             </p>
           </article>
         </div>
@@ -919,73 +909,58 @@
     <section class="section" id="beneficios">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Por qué puede encajar en tu establecimiento</h2>
+          <h2>Qué gana su bar</h2>
           <p>
-            Esta propuesta está orientada a propietarios que buscan rentabilizar mejor su negocio con una solución sencilla, externalizada y sin complicaciones.
+            No aplicamos soluciones genéricas. Valoramos cada establecimiento de forma individual para asegurar una implantación adecuada, rentable y alineada con su operativa.
           </p>
         </div>
 
         <div class="benefits-grid">
           <article class="card reveal">
-            <div class="card-icon">📈</div>
-            <h3>Ingresos extra sin añadir trabajo</h3>
+            <div class="card-icon">💸</div>
+            <h3>Ingresos pasivos adicionales</h3>
             <p>
-              La máquina puede convertirse en una vía complementaria de ingresos mientras tú sigues centrado en la gestión de tu negocio principal.
+              Añada una nueva vía de rentabilidad a su negocio sin necesidad de ampliar plantilla ni asumir una operativa compleja.
             </p>
           </article>
 
           <article class="card reveal">
             <div class="card-icon">🧰</div>
-            <h3>Nos ocupamos de todo</h3>
+            <h3>Cero complicaciones de gestión</h3>
             <p>
-              Instalación, coordinación del servicio, seguimiento y soporte: Tiki Taka asume la gestión para que tengas máxima comodidad.
+              Nosotros nos ocupamos de la instalación, mantenimiento, soporte y gestión integral del servicio.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🛎️</div>
+            <h3>Asistencia técnica y operativa</h3>
+            <p>
+              Ante cualquier necesidad, nuestro equipo responde para garantizar el correcto funcionamiento del terminal.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">⚖️</div>
+            <h3>Cumplimiento normativo garantizado</h3>
+            <p>
+              Trabajamos con todas las garantías necesarias para que el servicio se desarrolle dentro del marco regulatorio correspondiente.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">📍</div>
+            <h3>Un servicio adaptado a su local</h3>
+            <p>
+              Valoramos cada bar de forma individual para asegurar una implantación adecuada, visible y rentable.
             </p>
           </article>
 
           <article class="card reveal">
             <div class="card-icon">🤝</div>
-            <h3>Relación directa y clara</h3>
-            <ul class="list-clean">
-              <li>Atención cercana y profesional</li>
-              <li>Proceso simple desde el primer contacto</li>
-              <li>Propuesta adaptada a tu local</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="proceso">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Cómo trabajamos</h2>
-          <p>
-            Un proceso claro para que sepas exactamente qué esperar desde el momento en que escaneas el QR hasta la instalación en tu local.
-          </p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="card reveal">
-            <div class="step-number">1</div>
-            <h3>Nos contactas</h3>
+            <h3>Un proceso claro y profesional</h3>
             <p>
-              Déjanos tus datos o escríbenos directamente por WhatsApp, teléfono o correo para contarnos tu caso.
-            </p>
-          </article>
-
-          <article class="card reveal">
-            <div class="step-number">2</div>
-            <h3>Valoramos tu local</h3>
-            <p>
-              Revisamos contigo el tipo de establecimiento y te explicamos cómo encajaría la instalación de la máquina tipo B.
-            </p>
-          </article>
-
-          <article class="card reveal">
-            <div class="step-number">3</div>
-            <h3>Instalamos y gestionamos</h3>
-            <p>
-              Si encaja, ponemos en marcha el servicio y nos ocupamos de la gestión para que tú solo tengas que cobrar tus comisiones.
+              Desde la primera consulta hasta la puesta en marcha, le acompañamos con una propuesta ordenada, transparente y sencilla de entender.
             </p>
           </article>
         </div>
@@ -996,14 +971,14 @@
       <div class="container contact-grid">
         <div class="card contact-panel reveal">
           <div class="section-head" style="margin-bottom: 10px;">
-            <h2>Solicita información para tu bar o restaurante</h2>
+            <h2>Solicite asesoramiento para su establecimiento</h2>
             <p>
-              Cuéntanos dónde está tu local y te explicamos cómo funciona la instalación de una máquina tipo B con Tiki Taka.
+              Si está valorando incorporar un terminal de hostelería en su bar o restaurante, estaremos encantados de estudiar su caso y explicarle cómo encajaría el servicio.
             </p>
           </div>
 
           <div class="contact-chips">
-            <a class="contact-chip" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20instalar%20una%20m%C3%A1quina%20tipo%20B%20en%20mi%20local" target="_blank" rel="noopener noreferrer">
+            <a class="contact-chip" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20instalaci%C3%B3n%20de%20una%20m%C3%A1quina%20tipo%20B%20en%20mi%20local" target="_blank" rel="noopener noreferrer">
               <div class="icon">💬</div>
               <div>
                 <strong>WhatsApp</strong>
@@ -1030,16 +1005,16 @@
         </div>
 
         <div class="card reveal">
-          <h3 style="margin-top: 0; font-size: 1.4rem;">Quiero que me contactéis</h3>
+          <h3 style="margin-top: 0; font-size: 1.4rem;">Quiero que me contacten</h3>
           <p class="helper" style="margin-bottom: 18px;">
-            Este formulario está preparado para funcionar sin backend mediante <strong>Formspree</strong>, <strong>Netlify Forms</strong> o tu sistema habitual de captación de leads.
+            Este formulario está preparado para conectarlo con Formspree, Netlify Forms o su sistema habitual de captación de leads.
           </p>
 
           <form class="form" id="contactForm" action="#" method="post" novalidate>
             <div class="form-row">
               <div class="field">
                 <label for="name">Nombre</label>
-                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+                <input id="name" name="name" type="text" placeholder="Su nombre" required />
               </div>
               <div class="field">
                 <label for="business">Bar o restaurante</label>
@@ -1050,36 +1025,36 @@
             <div class="form-row">
               <div class="field">
                 <label for="phone">Teléfono</label>
-                <input id="phone" name="phone" type="tel" placeholder="Tu número de contacto" required />
+                <input id="phone" name="phone" type="tel" placeholder="Su número de contacto" required />
               </div>
               <div class="field">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="tu@email.com" required />
+                <input id="email" name="email" type="email" placeholder="su@email.com" required />
               </div>
             </div>
 
             <div class="field">
-              <label for="interest">Qué necesitas</label>
+              <label for="interest">Qué necesita</label>
               <select id="interest" name="interest" required>
-                <option value="">Selecciona una opción</option>
+                <option value="">Seleccione una opción</option>
                 <option value="instalar">Quiero instalar una máquina tipo B</option>
                 <option value="informacion">Quiero más información</option>
-                <option value="llamada">Prefiero que me llaméis</option>
+                <option value="llamada">Prefiero que me llamen</option>
               </select>
             </div>
 
             <div class="field">
               <label for="message">Mensaje</label>
-              <textarea id="message" name="message" placeholder="Indícanos tu ciudad, tipo de local o cualquier detalle relevante"></textarea>
+              <textarea id="message" name="message" placeholder="Indíquenos su ciudad, tipo de local o cualquier detalle relevante"></textarea>
             </div>
 
             <button class="btn btn-primary" type="submit">Enviar solicitud</button>
 
             <div class="success-message" id="successMessage" role="status" aria-live="polite">
-              Gracias. Hemos preparado tu solicitud correctamente. Solo queda conectar este formulario a tu herramienta preferida para recibir los contactos.
+              Gracias. Hemos preparado su solicitud correctamente. Solo queda conectar este formulario a su herramienta preferida para recibir los contactos.
             </div>
             <div class="error-message" id="errorMessage" role="alert" aria-live="assertive">
-              Revisa los campos obligatorios e inténtalo de nuevo.
+              Revise los campos obligatorios e inténtelo de nuevo.
             </div>
           </form>
         </div>
@@ -1105,9 +1080,7 @@
     const errorMessage = document.getElementById('errorMessage');
     const year = document.getElementById('year');
 
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
+    if (year) year.textContent = new Date().getFullYear();
 
     if (mobileToggle && navLinks) {
       mobileToggle.addEventListener('click', () => {
