@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tiki Taka instala y gestiona máquinas tipo B en bares y restaurantes. Tú cedes el espacio, te despreocupas de todo y cobras tus comisiones." />
+  <title>Tiki Taka | Instalación de máquinas tipo B para bares y restaurantes</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-soft: #101010;
+      --card: rgba(255,255,255,0.06);
+      --card-border: rgba(255,255,255,0.09);
+      --text: #ffffff;
+      --muted: #b8b8b8;
+      --accent: #e4002b;
+      --accent-2: #ff4a63;
+      --success: #24d366;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --container: 1180px;
+      --transition: 300ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(228, 0, 43, 0.22), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08), transparent 20%),
+        linear-gradient(180deg, #090909 0%, #040404 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 5, 5, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 132px;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a {
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(228, 0, 43, 0.35);
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover,
+    .nav-cta:focus-visible,
+    .btn:hover,
+    .btn:focus-visible,
+    .contact-chip:hover,
+    .contact-chip:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      padding: 56px 0 38px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(228, 0, 43, 0.16);
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.2rem, 6vw, 4.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(228, 0, 43, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .meta-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #efefef;
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: calc(var(--radius) + 4px);
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03)),
+        linear-gradient(145deg, rgba(228, 0, 43, 0.16), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      isolation: isolate;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 50%;
+      filter: blur(20px);
+      z-index: -1;
+    }
+
+    .hero-card::before {
+      width: 180px;
+      height: 180px;
+      top: 18px;
+      right: -40px;
+      background: rgba(228, 0, 43, 0.35);
+    }
+
+    .hero-card::after {
+      width: 120px;
+      height: 120px;
+      bottom: 90px;
+      left: -20px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .machine-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+    }
+
+    .machine-badge span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #24d366;
+      box-shadow: 0 0 0 7px rgba(36, 211, 102, 0.12);
+    }
+
+    .device {
+      position: relative;
+      max-width: 320px;
+      margin: 26px auto 0;
+      padding: 16px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 50px rgba(0,0,0,0.35);
+    }
+
+    .device-screen {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 18px;
+      min-height: 320px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 30%),
+        linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .screen-logo {
+      width: 128px;
+      margin: 0 auto 12px;
+      opacity: 0.95;
+    }
+
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 22px 0 16px;
+    }
+
+    .slot {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+
+    .screen-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stat-box {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-box span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: -6px;
+      bottom: 34px;
+      width: 230px;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .floating-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .benefits-grid,
+    .steps-grid,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .benefits-grid,
+    .steps-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(228, 0, 43, 0.24), rgba(255,255,255,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p,
+    .card li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list-clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .list-clean li {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .list-clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(228, 0, 43, 0.28);
+      margin-bottom: 14px;
+    }
+
+    .contact-panel {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04)),
+        linear-gradient(135deg, rgba(228,0,43,0.12), transparent 55%);
+    }
+
+    .contact-chips {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .contact-chip:hover {
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .contact-chip .icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .contact-chip strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .contact-chip span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border-radius: 16px;
+      padding: 15px 16px;
+      outline: none;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      font: inherit;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #8e8e8e;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.07);
+      box-shadow: 0 0 0 4px rgba(228,0,43,0.12);
+    }
+
+    .field textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .success-message,
+    .error-message {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 0.95rem;
+    }
+
+    .success-message {
+      background: rgba(36, 211, 102, 0.12);
+      border: 1px solid rgba(36, 211, 102, 0.24);
+      color: #d8ffe4;
+    }
+
+    .error-message {
+      background: rgba(255, 74, 99, 0.12);
+      border: 1px solid rgba(255, 74, 99, 0.25);
+      color: #ffe1e5;
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .contact-grid,
+      .benefits-grid,
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: auto;
+      }
+
+      .floating-card {
+        position: static;
+        width: 100%;
+        margin-top: 18px;
+        animation: none;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 16px;
+        border-radius: 20px;
+        background: rgba(10,10,10,0.96);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+      }
+
+      .nav-cta.desktop-only {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar .container,
+      .section .container,
+      .hero .container,
+      .footer .container {
+        width: min(calc(100% - 24px), var(--container));
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .brand-logo {
+        width: 108px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      h1 {
+        max-width: 12ch;
+      }
+
+      .hero p,
+      .section-head p,
+      .card p,
+      .card li,
+      .helper {
+        font-size: 0.98rem;
+      }
+
+      .hero-card,
+      .card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .device {
+        max-width: 100%;
+      }
+
+      .slots {
+        gap: 10px;
+      }
+
+      .slot {
+        border-radius: 14px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio de Tiki Taka">
+        <img class="brand-logo" src="Logo blanco 2 líneas.png" alt="Logo Tiki Taka" />
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#servicio">Servicio</a>
+        <a href="#beneficios">Ventajas</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#contacto">Contacto</a>
+        <a class="nav-cta" href="#contacto">Quiero mi propuesta</a>
+      </nav>
+
+      <a class="nav-cta desktop-only" href="#contacto">Quiero mi propuesta</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Instalación de máquinas tipo B para hostelería</div>
+          <h1>Instala una máquina tipo B en tu local y cobra comisiones sin complicarte.</h1>
+          <p>
+            En <strong>Tiki Taka</strong> instalamos y gestionamos <strong>máquinas tipo B</strong> para bares y restaurantes.
+            Tú pones el espacio. Nosotros nos encargamos de la instalación, la gestión y el seguimiento del servicio.
+            <strong>Tu única preocupación es cobrar las comisiones.</strong>
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto">Solicitar información</a>
+            <a class="btn btn-secondary" href="#beneficios">Ver ventajas</a>
+          </div>
+
+          <div class="hero-meta" aria-label="Ventajas destacadas">
+            <span class="meta-pill">Sin gestión diaria</span>
+            <span class="meta-pill">Instalación y soporte</span>
+            <span class="meta-pill">Ingresos por comisión</span>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Vista destacada del servicio">
+          <div>
+            <div class="machine-badge"><span></span> Servicio disponible para nuevos locales</div>
+            <div class="device">
+              <div class="device-screen">
+                <img class="screen-logo" src="Logo blanco 2 líneas.png" alt="Tiki Taka" />
+                <div class="slots" aria-hidden="true">
+                  <div class="slot">🍒</div>
+                  <div class="slot">🍒</div>
+                  <div class="slot">🍒</div>
+                </div>
+                <div class="screen-stats">
+                  <div class="stat-box">
+                    <strong>Más rentabilidad</strong>
+                    <span>Monetiza un espacio de tu bar o restaurante</span>
+                  </div>
+                  <div class="stat-box">
+                    <strong>Todo incluido</strong>
+                    <span>Instalación, gestión y soporte por nuestra parte</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card">
+            <strong>Tú cobras, nosotros gestionamos</strong>
+            <p>Una solución pensada para sumar ingresos al local sin añadirte carga operativa.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="servicio">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Un servicio llave en mano para bares y restaurantes</h2>
+          <p>
+            Si estás valorando instalar una máquina tipo B en tu establecimiento, Tiki Taka te ofrece una solución cómoda,
+            profesional y preparada para que no tengas que ocuparte de la operativa del día a día.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="card reveal">
+            <div class="card-icon">🛠️</div>
+            <h3>Instalación completa</h3>
+            <p>
+              Nos encargamos de poner en marcha la máquina en tu local para que todo quede resuelto de forma ágil y profesional.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🧾</div>
+            <h3>Gestión sin fricción</h3>
+            <p>
+              El servicio está pensado para que tú no tengas que preocuparte por la gestión: nosotros asumimos la parte operativa.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">💸</div>
+            <h3>Comisiones para tu negocio</h3>
+            <p>
+              Tú cedes el espacio y cobras las comisiones generadas, incorporando una fuente de ingresos adicional para tu local.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Por qué puede encajar en tu establecimiento</h2>
+          <p>
+            Esta propuesta está orientada a propietarios que buscan rentabilizar mejor su negocio con una solución sencilla, externalizada y sin complicaciones.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="card reveal">
+            <div class="card-icon">📈</div>
+            <h3>Ingresos extra sin añadir trabajo</h3>
+            <p>
+              La máquina puede convertirse en una vía complementaria de ingresos mientras tú sigues centrado en la gestión de tu negocio principal.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🧰</div>
+            <h3>Nos ocupamos de todo</h3>
+            <p>
+              Instalación, coordinación del servicio, seguimiento y soporte: Tiki Taka asume la gestión para que tengas máxima comodidad.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🤝</div>
+            <h3>Relación directa y clara</h3>
+            <ul class="list-clean">
+              <li>Atención cercana y profesional</li>
+              <li>Proceso simple desde el primer contacto</li>
+              <li>Propuesta adaptada a tu local</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Cómo trabajamos</h2>
+          <p>
+            Un proceso claro para que sepas exactamente qué esperar desde el momento en que escaneas el QR hasta la instalación en tu local.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="card reveal">
+            <div class="step-number">1</div>
+            <h3>Nos contactas</h3>
+            <p>
+              Déjanos tus datos o escríbenos directamente por WhatsApp, teléfono o correo para contarnos tu caso.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="step-number">2</div>
+            <h3>Valoramos tu local</h3>
+            <p>
+              Revisamos contigo el tipo de establecimiento y te explicamos cómo encajaría la instalación de la máquina tipo B.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="step-number">3</div>
+            <h3>Instalamos y gestionamos</h3>
+            <p>
+              Si encaja, ponemos en marcha el servicio y nos ocupamos de la gestión para que tú solo tengas que cobrar tus comisiones.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container contact-grid">
+        <div class="card contact-panel reveal">
+          <div class="section-head" style="margin-bottom: 10px;">
+            <h2>Solicita información para tu bar o restaurante</h2>
+            <p>
+              Cuéntanos dónde está tu local y te explicamos cómo funciona la instalación de una máquina tipo B con Tiki Taka.
+            </p>
+          </div>
+
+          <div class="contact-chips">
+            <a class="contact-chip" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20para%20instalar%20una%20m%C3%A1quina%20tipo%20B%20en%20mi%20local" target="_blank" rel="noopener noreferrer">
+              <div class="icon">💬</div>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+34 600 000 000</span>
+              </div>
+            </a>
+
+            <a class="contact-chip" href="tel:+34600000000">
+              <div class="icon">📞</div>
+              <div>
+                <strong>Teléfono</strong>
+                <span>+34 600 000 000</span>
+              </div>
+            </a>
+
+            <a class="contact-chip" href="mailto:info@tikitaka.es">
+              <div class="icon">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <span>info@tikitaka.es</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3 style="margin-top: 0; font-size: 1.4rem;">Quiero que me contactéis</h3>
+          <p class="helper" style="margin-bottom: 18px;">
+            Este formulario está preparado para funcionar sin backend mediante <strong>Formspree</strong>, <strong>Netlify Forms</strong> o tu sistema habitual de captación de leads.
+          </p>
+
+          <form class="form" id="contactForm" action="#" method="post" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Nombre</label>
+                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+              </div>
+              <div class="field">
+                <label for="business">Bar o restaurante</label>
+                <input id="business" name="business" type="text" placeholder="Nombre del establecimiento" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="phone">Teléfono</label>
+                <input id="phone" name="phone" type="tel" placeholder="Tu número de contacto" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="tu@email.com" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="interest">Qué necesitas</label>
+              <select id="interest" name="interest" required>
+                <option value="">Selecciona una opción</option>
+                <option value="instalar">Quiero instalar una máquina tipo B</option>
+                <option value="informacion">Quiero más información</option>
+                <option value="llamada">Prefiero que me llaméis</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" placeholder="Indícanos tu ciudad, tipo de local o cualquier detalle relevante"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+
+            <div class="success-message" id="successMessage" role="status" aria-live="polite">
+              Gracias. Hemos preparado tu solicitud correctamente. Solo queda conectar este formulario a tu herramienta preferida para recibir los contactos.
+            </div>
+            <div class="error-message" id="errorMessage" role="alert" aria-live="assertive">
+              Revisa los campos obligatorios e inténtalo de nuevo.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong style="display:block; color:#fff; margin-bottom: 6px;"></strong>
+        <span></span>
+      </div>
+      <span>© <span id="year"></span> Tiki Taka. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const year = document.getElementById('year');
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+
+    if (mobileToggle && navLinks) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
+
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'none';
+
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach((field) => {
+          const value = field.value.trim();
+          if (!value) {
+            isValid = false;
+            field.setAttribute('aria-invalid', 'true');
+          } else {
+            field.removeAttribute('aria-invalid');
+          }
+        });
+
+        const emailField = document.getElementById('email');
+        if (emailField && emailField.value.trim()) {
+          const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim());
+          if (!emailValid) {
+            isValid = false;
+            emailField.setAttribute('aria-invalid', 'true');
+          }
+        }
+
+        if (!isValid) {
+          errorMessage.style.display = 'block';
+          return;
+        }
+
+        successMessage.style.display = 'block';
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>
